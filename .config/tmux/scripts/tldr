@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-tmux display-popup "tldr --color always $1 | less -r"
-exit 0

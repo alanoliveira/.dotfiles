@@ -1,19 +1,15 @@
 #!/usr/bin/env bash
 
-__ZOXIDE_CMD="_ZO_DATA_DIR=$HOME/.local/share/zoxide_repos/ zoxide"
-__REPOS_PATH=$(echo "$HOME/Repos/")
+path=$1
 
-selected=$(\
-  fd '\.git$' -t d -u --prune $__REPOS_PATH -x  sh -c "$__ZOXIDE_CMD query -as {//} 2> /dev/null || printf '%6.1f {//}\n' 0" |\
-  sort -nr | cut -c 8- | uniq | sed "s#$__REPOS_PATH##" | fzf\
-)
+selected=$(eza -s accessed -r -D -1 $path | fzf)
 if [[ -z $selected ]]; then
     exit 0
 fi
 
 selected_name=$(basename "$selected" | tr . _)
-selected_path="$__REPOS_PATH$selected"
-sh -c "$__ZOXIDE_CMD add $selected_path"
+selected_path="$path$selected"
+touch $selected_path
 
 if ! tmux has-session -t=$selected_name 2> /dev/null; then
     tmux new-session -ds $selected_name -c $selected_path

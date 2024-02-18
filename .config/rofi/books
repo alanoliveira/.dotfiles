@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+if [ -n "$ROFI_INFO" ];
+then
+  coproc (zathura "$ROFI_INFO" > /dev/null)
+  exit 0
+fi
+
+IFS=$'\n'
+for file in $(fd . --type f $HOME/Cloud/books); do
+  echo -en "$(basename $file)\0info\x1f$file\n"
+done
+

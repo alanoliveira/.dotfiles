@@ -1,3 +1,4 @@
+# interactive shell
 typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
 
 source "$ZDOTDIR/syntax-highlighting.zsh"

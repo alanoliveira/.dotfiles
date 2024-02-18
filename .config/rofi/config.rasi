@@ -1,5 +1,5 @@
 configuration {
-	modes: "drun,run,window,ssh";
+	modes: "drun,run,books:/home/alan/.config/rofi/books";
 	font: "JetBrainsMono Nerd Font Mono 12";
 /*	location: 0;*/
 /*	yoffset: 0;*/

@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+trap 'rm -f "$$.tags"' EXIT
+git ls-files | ctags --tag-relative -L - -f"$$.tags" --languages=ruby $@
+mv "$$.tags" "tags"

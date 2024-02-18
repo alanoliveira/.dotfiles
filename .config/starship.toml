@@ -35,6 +35,7 @@ style = 'bold yellow'
 
 [status]
 disabled = false
+symbol = ' '
 
 [fill]
 symbol = ' '
@@ -46,7 +47,7 @@ when = '[ -n "$TMUX" ]'
 format = '[$symbol ($output)]($style)'
 
 [custom.direnv]
-when = '[ -n "$DIRENV_DIR" ] && direnv status 2> /dev/null | grep -q "Found RC allowed false"'
+when = '[ -n "$DIRENV_DIR" ] && direnv status --json | jq -e ".state.loadedRC.allowed != 0"'
 format = '[$symbol]($style)'
 symbol = '󰈡 '
 style = 'bold red'

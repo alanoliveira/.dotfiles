@@ -5,3 +5,6 @@ Gemfile.local.lock
 .envrc
 *.local
 .vimrc.local.lua
+.rgignore
+# ctags
+tags

@@ -1,0 +1,2 @@
+# rspec alias_matcher (rspec-expectations gem)
+--regex-ruby=/\s*alias_matcher\s+\:(\w+)/\1/a/{exclusive}

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+path=$1
+
+selected=$(eza -s accessed -r -D -1 $path | fzf)
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+selected_name=$(basename "$selected" | tr . _)
+selected_path="$path/$selected"
+
+if ! tmux select-window -t=$selected_name 2> /dev/null; then
+    tmux new-window -n $selected_name -c $selected_path $EDITOR
+fi

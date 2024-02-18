@@ -2,6 +2,10 @@
 
 # disable firefox reserved keys (like ctrl+q, ctrl+w, ctrl+t, ctrl+n, ...)
 # https://github.com/glacambre/firefox-patches/issues/1
-# sudo perl -i -pne 's/reserved="true"/               /g' /usr/lib/firefox/browser/omni.ja
+
+if pgrep -x "firefox" > /dev/null; then
+    echo "Firefox is running. Please close it and try again."
+    exit 1
+fi
 sudo sed -i 's/reserved="true"/               /g' /usr/lib/firefox/browser/omni.ja
 find ~/.cache/mozilla/firefox -type d -name startupCache | xargs rm -rf
