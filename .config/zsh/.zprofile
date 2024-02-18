@@ -6,4 +6,5 @@ export DOTFILES_PATH=$HOME/.dotfiles
 export BROWSER=firefox
 
 export PATH="$HOME/bin:$HOME/.cargo/bin:$PATH"
-. /opt/asdf-vm/asdf.sh
+
+[[ ! -f /opt/asdf-vm/asdf.sh ]] || source /opt/asdf-vm/asdf.sh

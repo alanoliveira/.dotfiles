@@ -1,7 +1,3 @@
 bind -v
-
-bind "^P" ed-prev-history
-bind "^N" ed-next-history
 bind "^R" em-inc-search-prev
-
 lldb:bind "\\t" lldb_complete

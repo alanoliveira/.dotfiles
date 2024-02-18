@@ -2,8 +2,13 @@ return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   dependencies = {
-    "nvim-treesitter/playground", -- explore treesitter
-    "nvim-treesitter/nvim-treesitter-context", -- show block context
+    { "nvim-treesitter/playground" },
+    {
+      "nvim-treesitter/nvim-treesitter-context",
+      opts = {
+        max_lines = 4,
+      },
+    },
   },
   config = function()
     require "nvim-treesitter.configs".setup {

@@ -1,0 +1,1 @@
+feh -d -g 800x600 --scale-down -q --action ";[yank title]echo %F | xclip -sel c"

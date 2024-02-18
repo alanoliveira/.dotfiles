@@ -89,6 +89,7 @@ bind --mode=ex     <C-h> text.delete_backward_char
 bind --mode=insert <C-h> text.delete_backward_char
 bind --mode=input  <C-h> text.delete_backward_char
 
+bindurl netflix\.com/watch <c-c> js tri.excmds.yank(document.querySelector('.player-timedtext').innerText.replace("\n", ""))
 bindurl youtu((\.be)|(be\.com)) f hint -J
 bindurl google(\.[a-zA-Z0-9]+){1,2}/search f hint -Jc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
 bindurl google(\.[a-zA-Z0-9]+){1,2}/search F hint -Jbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
@@ -99,12 +100,14 @@ bindurl github\.com/.*/.*/blob/ <C-i> js -r editor_gh_blob.js
 bindurl github\.com/.*/.*/blob/ --mode=insert <C-i> js -r editor_gh_blob.js
 
 seturl play.rust-lang.org allowautofocus true
-
-seturl ^https?://www.keybr.com superignore true
-seturl ^https?://monkeytype.com superignore true
-blacklistadd play.rust-lang.org
-blacklistadd mail.google.com
-blacklistadd maps.google.com
+seturl https://www.keybr.com superignore true
+seturl https://monkeytype.com superignore true
+seturl https://tetr.io/ superignore true
+seturl https://app.codility.com/ superignore true
+seturl https://www.hackerrank.com/ superignore true
+blacklistadd https://play.rust-lang.org
+blacklistadd https://mail.google.com
+blacklistadd https://google.com/maps
 
 " disable safebrowsing
 setpref browser.safebrowsing.blockedURIs.enabled false

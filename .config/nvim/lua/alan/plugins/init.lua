@@ -10,7 +10,6 @@ return {
   { "NStefan002/speedtyper.nvim", config = true },
 
   -- language specifc stuffs
-  { "slim-template/vim-slim", ft = "slim" },
   { "ziglang/zig.vim", ft = "zig" },
   { "tridactyl/vim-tridactyl" },
 }

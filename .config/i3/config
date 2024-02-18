@@ -27,16 +27,15 @@ for_window [floating] focus
 
 # kill focused window
 bindsym $mod+x kill
+bindsym --release --border button2 kill
 
 ################################################################################################
 
 # Start Applications
 bindsym $mod+space exec rofi -show
-bindsym $mod+e exec tobuterm -o 0.9 -t ranger -e ranger
-bindsym $mod+Shift+e exec pcmanfm
 bindsym Print exec --no-startup-id i3-scrot
-bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
-bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
+bindsym Ctrl+Print --release exec --no-startup-id i3-scrot -w
+bindsym Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Shift+p exec tobuterm -o 0.9 -t "process-manager" -e btm
 
 focus_follows_mouse no
@@ -139,12 +138,9 @@ for_window [class="Alacritty" title="Wiki"] move to workspace $wsWiki
 
 # Specific applications settings
 for_window [class="tobuterm"] floating enable, resize set 1500 1000, move position center
-for_window [title="alsamixer"] floating enable border pixel 1
-for_window [class="Blueman-manager"] floating enable border pixel 1
-for_window [title="tridactyl-nvim"] floating enable
-
-for_window [title="FCEUX.*" class="fceux"] floating enable resize set 254 245
-for_window [title="PPU Tile Editor" class="fceux"] floating enable resize set 278 421
+for_window [class="Pavucontrol"] floating enable border normal 1 resize set 800 600
+for_window [class="Blueman-manager"] floating enable border normal 1
+for_window [class="feh"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -190,10 +186,14 @@ bindsym $mod+Ctrl+Shift+l exec --no-startup-id i3lock
 
 # Autostart applications
 exec i3-msg workspace $ws1
-exec --no-startup-id spotify
+exec --no-startup-id flatpak run com.spotify.Client
 exec --no-startup-id alacritty -t "Wiki" -e nvim -c "cd $CLOUD_DIR/wiki"
 exec --no-startup-id alacritty
 exec sleep 3; i3-msg '[class="Spotify"] move to workspace $wsMp'
+exec --no-startup-id blueman-applet
+exec --no-startup-id fcitx5
+exec --no-startup-id unclutter
+exec --no-startup-id picom -b
 
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle

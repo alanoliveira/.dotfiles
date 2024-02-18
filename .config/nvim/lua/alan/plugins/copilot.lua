@@ -10,7 +10,12 @@ return {
       suggestion = {
         enabled = true,
         auto_trigger = true,
-        keymap = { accept = "<Tab>" },
+        keymap = {
+          accept = "<Tab>",
+          accept_word = "<M-w>",
+          accept_line = "<M-l>",
+          dismiss = "/",
+        },
       },
       filetypes = {
         yaml = true,

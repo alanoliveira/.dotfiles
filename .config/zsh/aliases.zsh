@@ -6,5 +6,3 @@ alias ps=procs
 alias ll='ls -alF --sort=modified'
 alias t=todo.sh
 alias lg=lazygit
-alias docker=podman
-alias docker-compose=podman-compose

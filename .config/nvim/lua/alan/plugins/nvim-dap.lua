@@ -8,10 +8,24 @@ return {
     },
     { "theHamsta/nvim-dap-virtual-text", config = true }, -- show current variable values
     { "rcarriga/nvim-dap-ui", config = true },            -- debugger ui
+    { "jbyuki/one-small-step-for-vimkind" },
   },
   config = function()
     local dap = require "dap"
     local dap_widgets = require "dap.ui.widgets";
+
+    dap.configurations.lua = {
+      {
+        type = "nlua",
+        request = "attach",
+        name = "Attach to running Neovim instance",
+      },
+    }
+
+    dap.adapters.nlua = function(callback, config)
+      callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
+    end
+
     local map = vim.keymap.set
     map("n", "<leader>db", dap.toggle_breakpoint, { desc = "[dap] toggle breakpoint" })
     map("n", "<leader>dB", function() dap.set_breakpoint(vim.fn.input("Breakpoint condition: ")) end,
