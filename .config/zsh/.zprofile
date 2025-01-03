@@ -8,4 +8,4 @@ export RI="-f ansi"
 export OVERMIND_TMUX_CONFIG=$HOME/.config/tmux/overmind.tmux.conf
 export RUBYLIB="$HOME/rubygem_plugins:$RUBYLIB"
 export CLOUD_DIR=$HOME/Cloud
-[[ ! -f /opt/asdf-vm/asdf.sh ]] || source /opt/asdf-vm/asdf.sh
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$HOME/bin:$PATH"

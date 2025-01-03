@@ -1,6 +1,6 @@
 configuration {
 	modes: "drun,run,books:/home/alan/.config/rofi/books";
-	font: "JetBrainsMono Nerd Font Mono 12";
+	font: "JetBrainsMono Nerd Font Mono 16";
 /*	location: 0;*/
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
