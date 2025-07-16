@@ -11,6 +11,7 @@ $git_state\
 $git_status\
 ${custom.direnv}\
 $fill\
+$time\
 ${custom.tmux} \
 $line_break\
 $character\
@@ -52,8 +53,7 @@ format = '[$symbol]($style)'
 symbol = '󰈡 '
 style = 'bold red'
 
-[custom.todo_sh]
-when = 'todo.sh ls | tail -n1 | grep -v "TODO: 0 "'
-format = '[$symbol]($style)'
-symbol = '󰄳 '
-style = 'bold '
+[time]
+disabled = false
+format = '[\[ $time \]]($style) '
+time_format = '%T'

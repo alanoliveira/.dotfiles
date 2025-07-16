@@ -2,7 +2,7 @@
 Name=Network Monitor
 Comment=Monitor network activity
 Icon=network-wired
-Exec=alacritty --class=localhost.network-monitor --title 'Network Monitor' -e bandwhich
+Exec=alacritty --class=localhost.network-monitor --title="Network Monitor" -e bandwhich
 Terminal=false
 Type=Application
 Categories=Utility;

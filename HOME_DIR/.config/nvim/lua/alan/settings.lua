@@ -14,7 +14,7 @@ vim.opt.list = true
 vim.opt.listchars:append{ tab = "»-", trail = "-", eol = "↴", extends = "»", precedes = "«", nbsp = "%", lead = "⋅" }
 vim.opt.spell = true
 vim.opt.spelllang = "en_us"
--- vim.opt.spellfile = os.getenv("CLOUD_DIR") .. "/nvim_spell/en.utf-8.add"
+vim.opt.spellfile = os.getenv("HOME") .. "/Dropbox/nvim_spell/en.utf-8.add"
 vim.opt.spelloptions:append({ "camel" })
 vim.opt.wrap = false
 vim.opt.undofile = true
@@ -30,3 +30,14 @@ vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "p using _" })
 vim.keymap.set("t", "<esc><esc>", "<C-\\><C-n>", { desc = "exit terminal mode" })
 
 vim.filetype.add({ extension = { ruby = "ruby", thor = "ruby", jbuilder = "ruby" } })
+
+-- if a Gemfile is present, add the tag files from all used gems to the tags
+if vim.fn.executable("bundle") == 1 and vim.fn.glob("Gemfile") ~= "" then
+  vim.system({ "bundle", "list", "--paths" }, { text = true }, function(data)
+    vim.schedule(function()
+      for gem_path in vim.gsplit(data.stdout, "\n") do
+        vim.opt.tags:append(vim.fs.joinpath(gem_path, "tags"))
+      end
+    end)
+  end)
+end

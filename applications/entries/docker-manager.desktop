@@ -2,7 +2,7 @@
 Version=1.0
 Name=Docker Manager
 Comment=Manage Docker containers with LazyDocker
-Exec=alacritty --class=localhost.docker-manager --title='Docker Manager' -e lazydocker
+Exec=alacritty --class=localhost.docker-manager --title="Docker Manager" -e lazydocker
 Terminal=false
 Type=Application
 Icon=Docker

@@ -7,4 +7,3 @@ ExecStart=-/usr/bin/agetty --autologin $USER --noclear %I \$TERM
 EOF
 
 yay -S --noconfirm --needed stow
-# stow -t $HOME ../HOME_DIR

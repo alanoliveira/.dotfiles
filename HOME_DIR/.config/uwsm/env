@@ -1,0 +1,24 @@
+# use env-hyprland file for HYPR* and AQ_* variables
+
+# Cursor size
+export XCURSOR_SIZE=24
+
+# Force all apps to use Wayland
+export GDK_BACKEND=wayland
+export QT_QPA_PLATFORM=wayland
+export QT_STYLE_OVERRIDE=kvantum
+export SDL_VIDEODRIVER=wayland
+export MOZ_ENABLE_WAYLAND=1
+export ELECTRON_OZONE_PLATFORM_HINT=wayland
+export OZONE_PLATFORM=wayland
+
+# Make .desktop files available for wofi
+export XDG_DATA_DIRS=~/.local/share:$XDG_DATA_DIRS
+
+# Use XCompose file
+export XCOMPOSEFILE=~/.XCompose
+
+# NVIDIA environment variables
+export NVD_BACKEND=direct
+export LIBVA_DRIVER_NAME=nvidia
+export __GLX_VENDOR_LIBRARY_NAME=nvidia

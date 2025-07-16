@@ -20,12 +20,12 @@ bind <C-l> tabnext
 " Disable all searchurls
 jsb Object.keys(tri.config.get("searchurls")).reduce((prev, u) => prev.catch(()=>{}).then(_ => tri.excmds.setnull("searchurls." + u)), Promise.resolve())
 " Add our own
-set searchurls.g    https://www.google.com/search?q=%s
-set searchurls.w    https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch
-set searchurls.gh   https://github.com/search?q=%s
-set searchurls.yt   https://www.youtube.com/results?search_query=%s
-set searchurls.dh   https://hub.docker.com/search?q=%s&type=image
-set searchurls.aur  https://aur.archlinux.org/packages?O=0&K=%s
+set searchurls.g     https://www.google.com/search?q=%s
+set searchurls.w     https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch
+set searchurls.gh    https://github.com/search?q=%s
+set searchurls.yt    https://www.youtube.com/results?search_query=%s
+set searchurls.dh    https://hub.docker.com/search?q=%s&type=image
+set searchurls.aur   https://aur.archlinux.org/packages?O=0&K=%s
 set searchurls.rdocs https://ruby-doc.org/3.3.4/?search=%s
-set searchurls.rei https://tatoeba.org/en/sentences/search?from=jpn&query=%s&to=
-set searchurls.ji https://jisho.org/search/%s
+set searchurls.rei   https://tatoeba.org/en/sentences/search?from=jpn&query=%s&to=
+set searchurls.ji    https://jisho.org/search/%s

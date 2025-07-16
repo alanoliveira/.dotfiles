@@ -49,13 +49,13 @@
     "format": "󰘚 {usage}%",
     "tooltip": true,
     "interval": 1,
-    "on-click": "gtk-launch system-monitor"
+    "on-click": "uwsm app --  system-monitor.desktop"
   },
 
   "memory": {
     "format": "󰍛 {}%",
     "interval": 1,
-    "on-click": "gtk-launch system-monitor"
+    "on-click": "uwsm app --  system-monitor.desktop"
   },
 
   "clock": {
@@ -75,7 +75,7 @@
     "interval": 3,
     "nospacing": 1,
     "on-click": "iwgtk",
-    "on-click-right": "gtk-launch network-monitor"
+    "on-click-right": "uwsm app -- network-monitor.desktop"
   },
 
   "battery": {

@@ -1,26 +1,5 @@
-#!/usr/bin/env ruby
-
-require 'bundler'
-
-definition = Bundler::Definition.build('Gemfile', 'Gemfile.lock', nil)
-
-paths = `git ls-files`.split
-
-definition.dependencies.each do |dep|
-  next if dep.platforms.any? && !dep.platforms.include?(Gem::Platform.local.os)
-
-  spec = Gem::Specification.find_by_name(dep.name, dep.requirement)
-
-  gem_path = Pathname.new(spec.full_gem_path)
-  paths |= spec.require_paths.map { |p| gem_path.join(p) }
-  paths << gem_path.join('app') if spec.dependencies.find { |g| g.name == 'actionpack' }
-end
-
-system(
-  'ctags',
-  '--languages=ruby',
-  '-R',
-  '-f',
-  'tags',
-  *paths.map(&:to_s)
-)
+#!/bin/sh
+set -e
+trap 'rm -f "$$.tags"' EXIT
+git ls-files | ctags --tag-relative -L - -f"$$.tags" --languages=ruby $@
+mv "$$.tags" "tags"

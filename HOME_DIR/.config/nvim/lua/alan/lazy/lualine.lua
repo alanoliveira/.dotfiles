@@ -26,6 +26,20 @@ return {
           path = 1,
         },
       },
+      lualine_x = {
+        {
+          function()
+            local clients = package.loaded["copilot"] and vim.lsp.get_clients({ name = "copilot", bufnr = 0 }) or {}
+            if #clients > 0 then
+              return " "
+            end
+            return " "
+          end,
+        },
+        "encoding",
+        "fileformat",
+        "filetype",
+      },
     },
   },
 }

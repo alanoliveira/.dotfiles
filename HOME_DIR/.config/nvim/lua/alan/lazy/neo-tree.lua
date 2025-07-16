@@ -1,7 +1,8 @@
 local function toggle_reveal()
   local is_ruby_gem = function(path)
     if string.match(path, "/gems/") == nil then return false end
-    local gemdir = require("alan.plugins.ruby").gemdir()
+    local data = vim.system({ "gem", "environment", "gemdir" }, { text = true }):wait()
+    local gemdir = data.stdout:sub(1, -2)
     return require("neo-tree.utils").is_subpath(gemdir, path)
   end
 
