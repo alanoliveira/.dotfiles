@@ -1,0 +1,37 @@
+#!/bin/bash
+
+CONTAINER_NAME="paddle-ocr"
+PORT="5817"
+HYPRSHOT_FOLDER=/tmp/paddle-ocr
+HYPRSHOT_FILENAME=$(date "+%Y%m%d%H%M%S").png
+FILE="$HYPRSHOT_FOLDER/$HYPRSHOT_FILENAME"
+MAX_WAIT=10
+
+mkdir -p $HYPRSHOT_FOLDER
+hyprshot --mode=region --output-folder=$HYPRSHOT_FOLDER --filename $HYPRSHOT_FILENAME --silent
+sleep 0.3 # for some reason the file is not immediately created
+
+if [ ! -f "$FILE" ]; then
+  exit 1
+fi
+
+if [ ! "$(docker ps -q -f name=^/${CONTAINER_NAME}$)" ]; then
+  docker run --rm -d --gpus all -p $PORT:5000 --name $CONTAINER_NAME paddle-ocr:latest server.py
+
+  SECONDS=0
+  while ! curl -f "http://localhost:$PORT/health" 2> /dev/null; do
+    if (( SECONDS >= MAX_WAIT )); then
+      notify-send -t 2000 "❌ Timeout waiting for container to become healthy."
+      exit 1
+    fi
+    sleep 1
+  done
+fi
+
+RESPONSE=$(curl -F "file=@${FILE};filename=$HYPRSHOT_FILENAME" http://localhost:$PORT/ocr)
+
+RESULT=$(echo $RESPONSE | jq --raw-output '.res.rec_texts | join("")')
+
+echo -n $RESULT | wl-copy
+notify-send -t 2000 "OCR: $RESULT"
+rm $FILE

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+stow -R -t $HOME -d $HOME/.local/share/dotfiles/ HOME_DIR
+stow -R -t $HOME/.local/bin/ -d $HOME/.local/share/dotfiles/ bin
+stow -R -t $HOME/.local/share/applications/ -d $HOME/.local/share/dotfiles/applications/ entries
+stow -R -t $HOME/.local/share/icons/hicolor/ -d $HOME/.local/share/dotfiles/applications/ icons
+
+gtk-update-icon-cache ~/.local/share/icons/hicolor &>/dev/null
+update-desktop-database ~/.local/share/applications

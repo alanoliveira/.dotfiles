@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-case $BLOCK_BUTTON in
-  1) ${BROWSER:-firefox} "https://github.com/notifications" ;;
-esac
-
-if gh api notifications --jq '.[].unread' | grep -q true; then
-    echo " "
-fi

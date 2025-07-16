@@ -1,0 +1,150 @@
+{
+  "layer": "top",
+  "position": "top",
+  "spacing": 0,
+  "height": 26,
+
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+
+  "modules-center": [
+    "clock",
+    "custom/github"
+  ],
+
+  "modules-right": [
+    "memory",
+    "cpu",
+    "bluetooth",
+    "network",
+    "pulseaudio",
+    "battery",
+    "idle_inhibitor",
+    "tray",
+    "custom/power-menu"
+  ],
+
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "",
+    },
+    "persistent-workspaces": {
+      "10": []
+    }
+  },
+
+  "cpu": {
+    "format": "󰘚 {usage}%",
+    "tooltip": true,
+    "interval": 1,
+    "on-click": "gtk-launch system-monitor"
+  },
+
+  "memory": {
+    "format": "󰍛 {}%",
+    "interval": 1,
+    "on-click": "gtk-launch system-monitor"
+  },
+
+  "clock": {
+    "format": "{:%Y-%m-%d %H:%M %a}",
+    "tooltip": false
+  },
+
+  "network": {
+    "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"],
+    "format" : "{icon}",
+    "format-wifi" : "{icon}",
+    "format-ethernet" : "󰀂",
+    "format-disconnected" : "󰖪",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-disconnected": "Disconnected",
+    "interval": 3,
+    "nospacing": 1,
+    "on-click": "iwgtk",
+    "on-click-right": "gtk-launch network-monitor"
+  },
+
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-discharging": "{icon}",
+    "format-charging":    "{icon}",
+    "format-plugged":     "",
+    "format-icons": {
+      "charging": [
+        "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"
+      ],
+      "default": [
+        "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
+      ]
+    },
+    "format-full": "",
+    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+    "interval": 5,
+    "states": {
+      "warning": 20,
+      "critical": 10
+    }
+  },
+
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "󰂲",
+    "format-connected": "",
+    "tooltip-format": "Devices connected: {num_connections}",
+    "on-click": "GTK_THEME=Adwaita-dark blueberry"
+  },
+
+  "pulseaudio": {
+    "format": "",
+    "format-muted": "󰝟",
+    "scroll-step": 5,
+    "on-click": "GTK_THEME=Adwaita-dark pavucontrol",
+    "tooltip-format": "Playing at {volume}%",
+    "on-click-right": "pamixer -t",
+    "on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "ignored-sinks": ["Easy Effects Sink"]
+  },
+
+  "tray": {
+    "icon-size": 14,
+    "spacing": 10
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "start-activated": true,
+    "format-icons": {
+      "activated": "󱫦",
+      "deactivated": "󱎫"
+    },
+    "tooltip": true
+  },
+
+  "custom/power-menu": {
+    "format": "󰐥",
+    "on-click": "power-menu",
+    "tooltip": false
+  },
+
+  "custom/github": {
+    "exec": "~/.config/waybar/scripts/github.sh",
+    "on-click": "${BROWSER:-firefox} 'https://github.com/notifications'",
+    "interval": 120,
+    "tooltip": false
+  }
+}

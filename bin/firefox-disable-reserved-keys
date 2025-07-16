@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # disable firefox reserved keys (like ctrl+q, ctrl+w, ctrl+t, ctrl+n, ...)
 # https://github.com/glacambre/firefox-patches/issues/1

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+pkill -x waybar &>/dev/null
+setsid waybar &>/dev/null &

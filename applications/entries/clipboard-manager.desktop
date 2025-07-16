@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Clipboard Manager
+Comment=Manage clipboard with clipse
+Icon=input-keyboard
+Exec=alacritty --class=localhost.clipboard-manager --title='Clipboard' -e clipse
+Terminal=false
+Type=Application
+Categories=Utility;
+NoDisplay=true

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Color Picker
+Exec=sh -c "sleep 0.2; hyprpicker -a"
+Icon=ColorPicker
+Type=Application
+Terminal=false
+Categories=Utility;

@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-stow --ignore "setup|.git|.gitignore" -t $HOME -d dirname($(realpath $0))/..  .

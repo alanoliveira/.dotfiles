@@ -1,9 +1,0 @@
-set clipboard=unnamedplus
-set noshowmode
-set noswapfile
-set nofixeol
-set noeol
-let g:netrw_silent = 1
-autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=150, on_visual=true}
-
-highlight Normal guibg=none
