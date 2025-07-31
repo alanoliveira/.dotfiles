@@ -2,7 +2,10 @@ yay -S --noconfirm --needed \
   nvim tmux wget curl unzip inetutils \
   zsh zsh-autosuggestions zsh-syntax-highlighting zsh-completions \
   fd eza fzf ripgrep zoxide bat \
-  fastfetch bottom man plocate less bandwhich \
+  fastfetch bottom man plocate less \
   direnv starship gum openssh
 
-sudo setcap cap_sys_ptrace,cap_dac_read_search,cap_net_raw,cap_net_admin+ep $(command -v bandwhich)
+for f in $(dirname ${BASH_SOURCE[0]})/terminal/*.sh; do
+  echo -e "\nRunning installer: $f"
+  source "$f"
+done

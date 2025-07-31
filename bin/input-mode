@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+show_help() {
+  cat <<EOF
+Usage: ${0##*/} [OPTION]
+        -h              display this menu
+        -a <methods>    alternate between the given input methods
+EOF
+}
+
+toggle() {
+  CURRENT_METHOD=$(fcitx5-remote -n)
+  TOTAL=${#OPTIONS[@]}
+
+  INDEX=-1
+  for i in "${!OPTIONS[@]}"; do
+    if [[ "${OPTIONS[$i]}" == "$CURRENT_METHOD" ]]; then
+      INDEX=$i
+      break
+    fi
+  done
+
+  if [[ $INDEX -eq -1 ]]; then
+    NEW_METHOD="${OPTIONS[0]}"
+  else
+    NEXT_INDEX=$(((INDEX + 1) % TOTAL))
+    NEW_METHOD="${OPTIONS[$NEXT_INDEX]}"
+  fi
+
+  fcitx5-remote -s $NEW_METHOD
+}
+
+while getopts "ha:" opt; do
+  case "$opt" in
+    h)
+      show_help
+      exit 0
+      ;;
+    a)
+      read -r -a OPTIONS <<< "$OPTARG"
+      toggle
+      ;;
+    *)
+      show_help
+      exit 1
+    ;;
+  esac
+done

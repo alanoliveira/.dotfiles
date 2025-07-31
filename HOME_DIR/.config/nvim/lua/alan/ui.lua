@@ -11,7 +11,12 @@ vim.diagnostic.config({
   },
 })
 
-vim.api.nvim_create_autocmd("TextYankPost", { pattern = "*", command = "lua require('vim.hl').on_yank()" })
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),
+  callback = function()
+    (vim.hl or vim.highlight).on_yank()
+  end,
+})
 
 vim.on_key(function(char)
   if vim.fn.mode() == "n" then

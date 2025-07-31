@@ -21,6 +21,8 @@
     "pulseaudio",
     "battery",
     "idle_inhibitor",
+    "custom/fcitx5",
+    "custom/dropbox",
     "tray",
     "custom/power-menu"
   ],
@@ -46,15 +48,21 @@
   },
 
   "cpu": {
-    "format": "󰘚 {usage}%",
+    "format": " {usage}%",
     "tooltip": true,
     "interval": 1,
+    "states": {
+      "warning": 30
+    },
     "on-click": "uwsm app --  system-monitor.desktop"
   },
 
   "memory": {
     "format": "󰍛 {}%",
     "interval": 1,
+    "states": {
+      "critical": 80
+    },
     "on-click": "uwsm app --  system-monitor.desktop"
   },
 
@@ -110,8 +118,8 @@
   },
 
   "pulseaudio": {
-    "format": "",
-    "format-muted": "󰝟",
+    "format": "",
+    "format-muted": "",
     "scroll-step": 5,
     "on-click": "GTK_THEME=Adwaita-dark pavucontrol",
     "tooltip-format": "Playing at {volume}%",
@@ -146,5 +154,19 @@
     "on-click": "${BROWSER:-firefox} 'https://github.com/notifications'",
     "interval": 120,
     "tooltip": false
+  },
+
+  "custom/fcitx5": {
+    "exec": "~/.config/waybar/scripts/fcitx5.sh",
+    "return-type": "json",
+    "on-click": "fcitx5-configtool",
+  },
+
+  "custom/dropbox": {
+    "exec": "~/.config/waybar/scripts/dropbox.sh",
+    "on-click": "xdg-open ~/Dropbox/",
+    "on-click-right": "xdg-open 'https://dropbox.com/'",
+    "return-type": "json",
+    "interval": 5
   }
 }

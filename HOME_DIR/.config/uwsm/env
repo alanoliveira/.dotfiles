@@ -12,9 +12,6 @@ export MOZ_ENABLE_WAYLAND=1
 export ELECTRON_OZONE_PLATFORM_HINT=wayland
 export OZONE_PLATFORM=wayland
 
-# Make .desktop files available for wofi
-export XDG_DATA_DIRS=~/.local/share:$XDG_DATA_DIRS
-
 # Use XCompose file
 export XCOMPOSEFILE=~/.XCompose
 

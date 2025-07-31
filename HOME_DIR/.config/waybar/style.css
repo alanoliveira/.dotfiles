@@ -1,20 +1,47 @@
 /* adapted from https://github.com/arkboix/sway */
 
-@define-color background #24273a;
-@define-color background-light #a5adcb;
-@define-color foreground #cad3f5;
-@define-color black #494d64;
-@define-color red #ed8796;
-@define-color green #a6da95;
-@define-color yellow #eed49f;
-@define-color blue #8aadf4;
-@define-color magenta #f5bde6;
-@define-color cyan #8bd5ca;
-@define-color white #b8c0e0;
-@define-color orange #ff8952;
+
+@define-color rosewater      #f4dbd6;
+@define-color flamingo       #f0c6c6;
+@define-color pink           #f5bde6;
+@define-color mauve          #c6a0f6;
+@define-color red            #ed8796;
+@define-color bright-red     #ec7486;
+@define-color maroon         #ee99a0;
+@define-color peach          #f5a97f;
+@define-color yellow         #eed49f;
+@define-color bright-yellow  #e1c682;
+@define-color green          #a6da95;
+@define-color bright-green   #8ccf7f;
+@define-color teal           #8bd5ca;
+@define-color sky            #91d7e3;
+@define-color sapphire       #7dc4e4;
+@define-color blue           #8aadf4;
+@define-color bright-blue    #78a1f6;
+@define-color lavender       #b7bdf8;
+@define-color text           #cad3f5;
+@define-color subtext1       #b8c0e0;
+@define-color subtext0       #a5adcb;
+@define-color overlay2       #939ab7;
+@define-color overlay1       #8087a2;
+@define-color overlay0       #6e738d;
+@define-color surface2       #5b6078;
+@define-color surface1       #494d64;
+@define-color surface0       #363a4f;
+@define-color base           #24273a;
+@define-color mantle         #1e2030;
+@define-color crust          #181926;
+@define-color black          #494d64;
+@define-color bright-black   #5b6078;
+@define-color magenta        #f5bde6;
+@define-color bright-magenta #f2a9dd;
+@define-color cyan           #8bd5ca;
+@define-color bright-cyan    #63cbc0;
+@define-color white          #a5adcb;
+@define-color bright-white   #b8c0e0;
 
 /* Module-specific colors */
-@define-color workspaces-color @foreground;
+@define-color workspaces-color @text;
 @define-color workspaces-focused-bg @green;
 @define-color workspaces-focused-fg @cyan;
 @define-color workspaces-urgent-bg @red;
@@ -22,20 +49,20 @@
 
 /* Text and border colors for modules */
 @define-color clock-color @white;
-@define-color cpu-color @green;
-@define-color memory-color @magenta;
-@define-color battery-color @cyan;
-@define-color battery-charging-color @green;
-@define-color battery-warning-color @yellow;
-@define-color battery-critical-color @red;
-@define-color network-color @blue;
-@define-color network-disconnected-color @red;
-@define-color pulseaudio-color @orange;
-@define-color pulseaudio-muted-color @red;
-@define-color bluetooth-color @cyan;
-@define-color github-color @orange;
-@define-color idle-inhibitor-color @foreground;
-@define-color idle-inhibitor-active-color @red;
+@define-color custom-github-color @white;
+@define-color memory-color @lavender;
+@define-color cpu-color @blue;
+@define-color bluetooth-color @sapphire;
+@define-color network-color @sky;
+@define-color pulseaudio-color @teal;
+@define-color battery-color @mauve;
+@define-color idle-inhibitor-color @pink;
+@define-color custom-fcitx5-color @flamingo;
+@define-color custom-dropbox-color @rosewater;
+@define-color power-menu-color @white;
+
+@define-color module-warning-color @yellow;
+@define-color module-critical-color @red;
 
 * {
     /* Base styling for all modules */
@@ -47,18 +74,28 @@
 }
 
 window#waybar {
-    background-color: @background;
-    color: @foreground;
+    background-color: @base;
+    color: @text;
 }
 
-/* Common module styling with border-bottom */
-#custom-power-menu, #clock, #cpu, #bluetooth,
-#memory, #battery, #network, #pulseaudio, #custom-github,
-#idle_inhibitor, #tray {
+box.horizontal.modules-right .module {
     padding: 0 10px;
     margin: 0 2px;
     border-bottom: 2px solid transparent;
     background-color: transparent;
+}
+
+#cpu-warning, #memory.warning, #network.disconnected,
+#battery.warning:not(.charging) {
+  color: @module-warning-color;
+  border-bottom-color: @module-warning-color;
+}
+
+#cpu.critical, #memory.critical, #pulseaudio.muted,
+#pulseaudio.muted, #battery.critical:not(.charging),
+#custom-dropbox.down {
+    color: @module-critical-color;
+    border-bottom-color: @module-critical-color;
 }
 
 /* Workspaces styling */
@@ -70,7 +107,7 @@ window#waybar {
 }
 
 #workspaces button:hover {
-    background: @background-light;
+    background: @white;
     box-shadow: inherit;
 }
 
@@ -113,58 +150,44 @@ window#waybar {
     border-bottom-color: @battery-color;
 }
 
-#battery.charging, #battery.plugged {
-    color: @battery-charging-color;
-    border-bottom-color: @battery-charging-color;
-}
-
-#battery.warning:not(.charging) {
-    color: @battery-warning-color;
-    border-bottom-color: @battery-warning-color;
-}
-
-#battery.critical:not(.charging) {
-    color: @battery-critical-color;
-    border-bottom-color: @battery-critical-color;
-}
-
 #network {
     color: @network-color;
     border-bottom-color: @network-color;
 }
 
-#network.disconnected {
-    color: @network-disconnected-color;
-    border-bottom-color: @network-disconnected-color;
-}
-
 #pulseaudio {
     color: @pulseaudio-color;
     border-bottom-color: @pulseaudio-color;
-}
-
-#pulseaudio.muted {
-    color: @pulseaudio-muted-color;
-    border-bottom-color: @pulseaudio-muted-color;
+    min-width: 2em;
 }
 
 #idle_inhibitor {
     color: @idle-inhibitor-color;
-    border-bottom-color: transparent;
+    border-bottom-color: @idle-inhibitor-color;
 }
 
-#idle_inhibitor.activated {
-    color: @idle-inhibitor-active-color;
-    border-bottom-color: @idle-inhibitor-active-color;
+#custom-power-menu {
+    color: @power-menu-color;
+    border-bottom-color: @power-menu-color;
 }
 
 #custom-github {
-    color: @github-color;
-    border-bottom-color: @github-color;
+    color: @custom-github-color;
+    border-bottom-color: @custom-github-color;
+}
+
+#custom-fcitx5 {
+    color: @custom-fcitx5-color;
+    border-bottom-color: @custom-fcitx5-color;
+    min-width: 1.3em;
+}
+
+#custom-dropbox {
+    color: @custom-dropbox-color;
+    border-bottom-color: @custom-dropbox-color;
 }
 
 #tray {
-    background-color: transparent;
     padding: 0 10px;
     margin: 0 2px;
 }
